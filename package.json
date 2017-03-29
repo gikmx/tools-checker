@@ -4,7 +4,7 @@
   "description": "An object validator.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "ava lib/test.js --verbose"
+    "test": "ava lib/test.js --verbose --no-cache"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/gikmx/validate/issues"
   },
-  "homepage": "https://github.com/gikmx/validate#readme"
+  "homepage": "https://github.com/gikmx/validate#readme",
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-core": "^6.24.0",
+    "babel-preset-env": "^1.2.2",
+    "babel-preset-stage-0": "^6.22.0"
+  },
+  "ava": {
+    "require": "babel-register",
+    "babel": "inherit"
+  }
 }

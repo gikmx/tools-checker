@@ -1,0 +1,26 @@
+{
+  "name": "@gik/validate",
+  "version": "0.0.2",
+  "description": "An object validator.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "ava lib/test.js --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gikmx/validate.git"
+  },
+  "keywords": [
+    "object",
+    "validator",
+    "validate",
+    "recursive",
+    "type"
+  ],
+  "author": "Héctor Menéndez <etor@gik.mx>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gikmx/validate/issues"
+  },
+  "homepage": "https://github.com/gikmx/validate#readme"
+}

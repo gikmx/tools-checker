@@ -1,4 +1,6 @@
+node_modules
 .git
+.tern-port
+*.log
 node_modules
 *.DS*
-.tern

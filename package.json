@@ -23,7 +23,9 @@
         "url": "https://github.com/gikmx/validate/issues"
     },
     "scripts": {
-        "test": "ava lib/test.js --verbose --no-cache"
+        "test": "ava src/test.js --verbose --no-cache",
+        "docs": "doxdox './src/**/*.js' --layout './template.hbs' --output README.md",
+        "precommit": "npm run test -s && npm run docs -s"
     },
     "devDependencies": {
         "@gik/eslint-config": "^0.0.2",
@@ -31,10 +33,13 @@
         "babel-core": "^6.24.0",
         "babel-preset-env": "^1.2.2",
         "babel-preset-stage-0": "^6.22.0",
-        "eslint": "^4.7.2"
+        "doxdox": "^2.0.3",
+        "eslint": "^4.7.2",
+        "husky": "^0.14.3"
     },
     "ava": {
         "require": "babel-register",
         "babel": "inherit"
-    }
+    },
+    "dependencies": {}
 }

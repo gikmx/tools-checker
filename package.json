@@ -1,36 +1,40 @@
 {
-  "name": "@gik/validate",
-  "version": "0.0.3",
-  "description": "An object validator.",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "ava lib/test.js --verbose --no-cache"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gikmx/validate.git"
-  },
-  "keywords": [
-    "object",
-    "validator",
-    "validate",
-    "recursive",
-    "type"
-  ],
-  "author": "Héctor Menéndez <etor@gik.mx>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gikmx/validate/issues"
-  },
-  "homepage": "https://github.com/gikmx/validate#readme",
-  "devDependencies": {
-    "ava": "^0.18.2",
-    "babel-core": "^6.24.0",
-    "babel-preset-env": "^1.2.2",
-    "babel-preset-stage-0": "^6.22.0"
-  },
-  "ava": {
-    "require": "babel-register",
-    "babel": "inherit"
-  }
+    "name": "@gik/validate",
+    "version": "0.0.3",
+    "description": "An object validator.",
+    "main": "lib/index.js",
+    "contributors": [
+        "Héctor Menéndez <etor@gik.mx>"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/gikmx/validate.git",
+    "keywords": [
+        "object",
+        "validator",
+        "validate",
+        "recursive",
+        "type"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gikmx/validate.git"
+    },
+    "bugs": {
+        "url": "https://github.com/gikmx/validate/issues"
+    },
+    "scripts": {
+        "test": "ava lib/test.js --verbose --no-cache"
+    },
+    "devDependencies": {
+        "@gik/eslint-config": "^0.0.2",
+        "ava": "^0.22.0",
+        "babel-core": "^6.24.0",
+        "babel-preset-env": "^1.2.2",
+        "babel-preset-stage-0": "^6.22.0",
+        "eslint": "^4.7.2"
+    },
+    "ava": {
+        "require": "babel-register",
+        "babel": "inherit"
+    }
 }

@@ -1,4 +1,4 @@
-# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.2*
+# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.6*
 > A simple type validator for those who resist to TypeScript or FlowType
 
 ## Contributors

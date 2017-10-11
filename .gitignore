@@ -4,3 +4,6 @@ node_modules
 *.log
 node_modules
 *.DS*
+lib
+package-lock.json
+yarn.lock

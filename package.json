@@ -1,45 +1,48 @@
 {
-    "name": "@gik/validate",
-    "version": "0.0.3",
-    "description": "An object validator.",
-    "main": "lib/index.js",
-    "contributors": [
-        "Héctor Menéndez <etor@gik.mx>"
-    ],
+    "name": "@gik/tools-checker",
+    "version": "0.0.2",
+    "description": "A simple type validator for those who resist to TypeScript or FlowType",
     "license": "MIT",
-    "homepage": "https://github.com/gikmx/validate.git",
+    "homepage": "https://github.com/gikmx/tools",
+    "contributors": [
+        "Héctor Menéndez <hector@gik.mx> (hectormenendez.com)"
+    ],
     "keywords": [
-        "object",
-        "validator",
-        "validate",
-        "recursive",
-        "type"
+        "type",
+        "type check"
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/gikmx/validate.git"
+        "url": "git+https://github.com/gikmx/tools-checker"
     },
     "bugs": {
-        "url": "https://github.com/gikmx/validate/issues"
+        "url": "https://github.com/gikmx/tools/issues"
+    },
+    "engines": {
+        "node": ">=6.11.3"
+    },
+    "main": "lib/index.js",
+    "directories": {
+        "test": "./test",
+        "src": "./src",
+        "out": "./lib"
     },
     "scripts": {
-        "test": "ava src/test.js --verbose --no-cache",
-        "docs": "doxdox './src/**/*.js' --layout './template.hbs' --output README.md",
-        "precommit": "npm run test -s && npm run docs -s"
+        "ver:beta": "gik-npm version:prerelease",
+        "ver:commit": "gik-npm version:patch",
+        "lint:docs": "gik-npm docs:lint",
+        "lint:code": "gik-npm lint:src",
+        "lint:test": "gik-npm lint:test",
+        "build": "npm run lint:code -s && gik-npm build",
+        "docs": "npm run lint:docs -s && gik-npm docs",
+        "test": "npm run lint:test -s && gik-npm test",
+        "start": "nodemon -V -w $npm_package_directories_src -w $npm_package_directories_test -x 'npm run build -s && npm run test -s'",
+        "precommit": "npm run build -s && npm run test -s && npm run ver:commit -s && npm run docs -s"
     },
+    "dependencies": {},
     "devDependencies": {
-        "@gik/eslint-config": "^0.0.2",
-        "ava": "^0.22.0",
-        "babel-core": "^6.24.0",
-        "babel-preset-env": "^1.2.2",
-        "babel-preset-stage-0": "^6.22.0",
-        "doxdox": "^2.0.3",
-        "eslint": "^4.7.2",
-        "husky": "^0.14.3"
-    },
-    "ava": {
-        "require": "babel-register",
-        "babel": "inherit"
-    },
-    "dependencies": {}
+        "@gik/eslint-config": "0.0.2",
+        "@gik/npm": "0.0.28",
+        "nodemon": "^1.12.1"
+    }
 }

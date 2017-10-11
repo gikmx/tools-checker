@@ -1,16 +1,14 @@
 {
     "ecmaVersion": 8,
-    "loadEagerly": ["./src"],
-    "dontLoad": [],
-    "libs": {},
+    "libs": [
+        "ecmascript"
+    ],
+    "loadEagerly": [
+        "./src/**/*.js",
+    ],
     "plugins": {
-        "complete_strings": {
-            "maxLength": 15
-        },
+        "doc_comment": {},
         "es_modules": {},
-        "doc_comment": {
-            "fullDocs": true,
-            "strong": true
-        }
+        "node": {}
     }
 }

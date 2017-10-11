@@ -1,4 +1,4 @@
-# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.6*
+# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.8*
 > A simple type validator for those who resist to TypeScript or FlowType
 
 ## Contributors
@@ -10,6 +10,13 @@
 
 ### Table of Contents
 
+-   [PropsParamError](#propsparamerror)
+-   [PropsDefError](#propsdeferror)
+-   [PropsBadReqError](#propsbadreqerror)
+-   [PropsBadMapError](#propsbadmaperror)
+-   [PropsBadTypeError](#propsbadtypeerror)
+-   [PropsReqError](#propsreqerror)
+-   [PropsTypeError](#propstypeerror)
 -   [Checker](#checker)
     -   [is](#is)
         -   [objectEmpty](#objectempty)
@@ -20,6 +27,49 @@
         -   [regexp](#regexp)
         -   [boolean](#boolean)
         -   [object](#object)
+    -   [Props](#props)
+
+## PropsParamError
+
+An expected argument for Props was invalid or not provided.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+## PropsDefError
+
+A definition prop was sent, but it was invalid.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+## PropsBadReqError
+
+A required property def was sent, but was invalid.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+## PropsBadMapError
+
+A required property def was sent, but was invalid.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+## PropsBadTypeError
+
+The specified type defined to validate property, isn't valid.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+## PropsReqError
+
+A required property was not found in subject.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+## PropsTypeError
+
+A property didn't have the correct type.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
 ## Checker
 
@@ -108,3 +158,44 @@ Determines if `value` is really a string.
 -   `value` **any** 
 
 Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+### Props
+
+Validates properties inside an object.
+
+**Parameters**
+
+-   `subject` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The object value whose properties will be inspected.
+-   `defmap` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** An definition object map, describing each of the prop' types.
+    -   `defmap.prop` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))** The name of a corresponding subject's <br>
+               _If a string is used, it will be converted to:_<br>
+               `{ type: <string used>, required:true }`
+    -   `defmap.type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Determines the type the prop should have, all methods on `is()` are asupported. (optional, default `any`)
+    -   `defmap.required` **bool** Wether the prop can be omitted. (optional, default `false`)
+    -   `defmap.default` **any** The value to use if prop is omitted (cannot be used along `required`). (optional, default `undefined`)
+    -   `defmap.map` **[function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** A function that will receive subject's prop value and expects you
+               to return acomputed value for it (optional, default `undefined`)
+
+**Examples**
+
+```javascript
+const subject = { a: 1, b: 'hello' z: undefined };
+const result = Props(subject, {
+    a: { type:'number', required:true },
+    b: 'string',
+    c: { default: new Date() },
+    d: { required: false, default: null, map: value => [value, true] },
+})
+// result:
+// { a: 1, b: 'hello', c: '1981-06-23 10:06:08', d: [null, true], z: undefined }
+```
+
+-   Throws **[PropsParamError](#propsparamerror)** 
+-   Throws **[PropsDefError](#propsdeferror)** 
+-   Throws **[PropsBadReqError](#propsbadreqerror)** 
+-   Throws **[PropsBadMapError](#propsbadmaperror)** 
+-   Throws **[PropsBadTypeError](#propsbadtypeerror)** 
+-   Throws **[PropsReqError](#propsreqerror)** 
+-   Throws **[PropsTypeError](#propstypeerror)** 
+
+Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The validated subject extended with default values (when applies).

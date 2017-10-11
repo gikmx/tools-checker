@@ -1,6 +1,6 @@
 {
     "name": "@gik/tools-checker",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "A simple type validator for those who resist to TypeScript or FlowType",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/tools",
@@ -39,9 +39,11 @@
         "start": "nodemon -V -w $npm_package_directories_src -w $npm_package_directories_test -x 'npm run build -s && npm run test -s'",
         "precommit": "npm run build -s && npm run test -s && npm run ver:commit -s && npm run docs -s"
     },
-    "dependencies": {},
+    "dependencies": {
+        "@gik/tools-thrower": "^0.1.6"
+    },
     "devDependencies": {
-        "@gik/eslint-config": "0.0.2",
+        "@gik/eslint-config": "0.0.3",
         "@gik/npm": "0.0.28",
         "nodemon": "^1.12.1"
     }

@@ -4,7 +4,7 @@
         "ecmascript"
     ],
     "loadEagerly": [
-        "./src/**/*.js",
+        "./src/**/*.js"
     ],
     "plugins": {
         "doc_comment": {},

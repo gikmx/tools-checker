@@ -70,4 +70,4 @@ export default [
 ].reduce((result, type) => ({
     ...result,
     [type.name.toLowerCase()]: type,
-}));
+}), {});

@@ -6,7 +6,7 @@ export { PRIMITIVES, METHODS };
 /**
  * Gives you tools to determine the type of a value.
  * @module is
- * @memberof Tools.Checker
+ * @memberof Tools.checker
  */
 export const Is = new Proxy(METHODS, {
 

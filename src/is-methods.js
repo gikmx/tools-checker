@@ -8,7 +8,7 @@ export default {
     /**
      * Determine if an element is an object and has no keys
      * @name objectEmpty
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {Object} value - an object to be checked.
      * @returns {boolean}
      */

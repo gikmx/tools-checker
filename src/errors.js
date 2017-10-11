@@ -1,56 +1,67 @@
+/**
+ * @namespace __types
+ * @memberof Tools
+ */
 export default {
 
     /**
-     * An expected argument for Props was invalid or not provided.
-     * @typedef {Error} PropsParamError
+     * An expected argument for props was invalid or not provided.
+     * @typedef {Error} propsParamError
+     * @memberof Tools.__types
      */
-    subject: { name: 'PropsParamError', message: 'Expecting {Object} subject' },
-    defmap: { name: 'PropsParamError', message: 'Expecting {Object} defmap' },
+    subject: { name: 'propsParamError', message: 'Expecting {Object} subject' },
+    defmap: { name: 'propsParamError', message: 'Expecting {Object} defmap' },
 
     /**
      * A definition prop was sent, but it was invalid.
-     * @typedef {Error} PropsDefError
+     * @typedef {Error} propsDefError
+     * @memberof Tools.__types
      */
-    nodef: { name: 'PropsDefError', message: 'Expecting an {Object|string} for def: ' },
+    nodef: { name: 'propsDefError', message: 'Expecting an {Object|string} for def: ' },
 
     /**
      * A required property def was sent, but was invalid.
-     * @typedef {Error} PropsBadReqError
+     * @typedef {Error} propsBadReqError
+     * @memberof Tools.__types
      */
     noreq: {
-        name: 'PropsBadReqError',
+        name: 'propsBadReqError',
         message: 'Expecting «required» to be {boolean} on def: ',
     },
 
     /**
      * A required property def was sent, but was invalid.
-     * @typedef {Error} PropsBadMapError
+     * @typedef {Error} propsBadMapError
+     * @memberof Tools.__types
      */
     nomap: {
-        name: 'PropsBadMapError',
+        name: 'propsBadMapError',
         message: 'Expecting «map» to be {function} on def: ',
     },
 
     /**
      * The specified type defined to validate property, isn't valid.
-     * @typedef {Error} PropsBadTypeError
+     * @typedef {Error} propsBadTypeError
+     * @memberof Tools.__types
      */
     notype: {
-        name: 'PropsBadTypeError',
+        name: 'propsBadTypeError',
         message: 'Unsupported «type» on def: ',
     },
 
     /**
      * A required property was not found in subject.
-     * @typedef {Error} PropsReqError
+     * @typedef {Error} propsReqError
+     * @memberof Tools.__types
      */
-    req: { name: 'PropsReqError', message: 'Expecting «required» prop: ' },
+    req: { name: 'propsReqError', message: 'Expecting «required» prop: ' },
 
 
     /**
      * A property didn't have the correct type.
-     * @typedef {Error} PropsTypeError
+     * @typedef {Error} propsTypeError
+     * @memberof Tools.__types
      */
-    type: { name: 'PropsTypeError', message: 'Expecting «type» ' },
+    type: { name: 'propsTypeError', message: 'Expecting «type» ' },
 
 };

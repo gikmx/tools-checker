@@ -7,7 +7,7 @@ export default [
     /**
      * Determines if `value` is really a string.
      * @name string
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {*} value
      * @returns {boolean}
      */
@@ -16,7 +16,7 @@ export default [
     /**
      * Determines if `value` is really a string.
      * @name number
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {*} value
      * @returns {boolean}
      */
@@ -25,7 +25,7 @@ export default [
     /**
      * Determines if `value` is really a string.
      * @name array
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {*} value
      * @returns {boolean}
      */
@@ -34,7 +34,7 @@ export default [
     /**
      * Determines if `value` is really a string.
      * @name function
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {*} value
      * @returns {boolean}
      */
@@ -43,7 +43,7 @@ export default [
     /**
      * Determines if `value` is really a string.
      * @name regexp
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {*} value
      * @returns {boolean}
      */
@@ -52,7 +52,7 @@ export default [
     /**
      * Determines if `value` is really a string.
      * @name boolean
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {*} value
      * @returns {boolean}
      */
@@ -61,7 +61,7 @@ export default [
     /**
      * Determines if `value` is really a string.
      * @name object
-     * @memberof Tools.Checker.is
+     * @memberof Tools.checker.is
      * @param {*} value
      * @returns {boolean}
      */

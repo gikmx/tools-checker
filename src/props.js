@@ -12,8 +12,8 @@ function thrower({ message, name }, suffix = '') {
 }
 
 /**
- * Validates properties inside an object.
- * @memberof Tools.Checker
+ * Validates properties of given object.
+ * @memberof Tools.checker
  *
  * @param {Object} subject - The object value whose properties will be inspected.
  * @param {Object} defmap - An definition object map, describing each of the prop' types.
@@ -32,17 +32,18 @@ function thrower({ message, name }, suffix = '') {
  *        to return acomputed value for it
  *
  * @returns {Object} The validated subject extended with default values (when applies).
- * @throws {PropsParamError}
- * @throws {PropsDefError}
- * @throws {PropsBadReqError}
- * @throws {PropsBadMapError}
- * @throws {PropsBadTypeError}
- * @throws {PropsReqError}
- * @throws {PropsTypeError}
+ *
+ * @throws {propsDefError} - [read](#propsdeferror)
+ * @throws {propsParamError} - [read](#propsparamerror)
+ * @throws {propsBadReqError} - [read](#propsbadreqerror)
+ * @throws {propsBadMapError} - [read](#propsbadmaperror)
+ * @throws {propsBadTypeError} - [read](#propsbadtypeerror)
+ * @throws {propsReqError} - [read](#propsreqerror)
+ * @throws {propsTypeError} - [read](#propstypeerror)
  *
  * @example
  * const subject = { a: 1, b: 'hello' z: undefined };
- * const result = Props(subject, {
+ * const result = props(subject, {
  *     a: { type:'number', required:true },
  *     b: 'string',
  *     c: { default: new Date() },
@@ -51,7 +52,7 @@ function thrower({ message, name }, suffix = '') {
  * // result:
  * // { a: 1, b: 'hello', c: '1981-06-23 10:06:08', d: [null, true], z: undefined }
  */
-export default function Props(subject, defmap) {
+export default function props(subject, defmap) {
 
     // Validate parameters
     if (!Is.object(subject) || Is.objectEmpty(subject)) thrower(Err.subject, subject);

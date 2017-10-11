@@ -1,4 +1,4 @@
-# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.8*
+# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.7*
 > A simple type validator for those who resist to TypeScript or FlowType
 
 ## Contributors
@@ -10,14 +10,15 @@
 
 ### Table of Contents
 
--   [PropsParamError](#propsparamerror)
--   [PropsDefError](#propsdeferror)
--   [PropsBadReqError](#propsbadreqerror)
--   [PropsBadMapError](#propsbadmaperror)
--   [PropsBadTypeError](#propsbadtypeerror)
--   [PropsReqError](#propsreqerror)
--   [PropsTypeError](#propstypeerror)
--   [Checker](#checker)
+-   [\_\_types](#__types)
+    -   [propsParamError](#propsparamerror)
+    -   [propsDefError](#propsdeferror)
+    -   [propsBadReqError](#propsbadreqerror)
+    -   [propsBadMapError](#propsbadmaperror)
+    -   [propsBadTypeError](#propsbadtypeerror)
+    -   [propsReqError](#propsreqerror)
+    -   [propsTypeError](#propstypeerror)
+-   [checker](#checker)
     -   [is](#is)
         -   [objectEmpty](#objectempty)
         -   [string](#string)
@@ -27,51 +28,53 @@
         -   [regexp](#regexp)
         -   [boolean](#boolean)
         -   [object](#object)
-    -   [Props](#props)
+    -   [props](#props)
 
-## PropsParamError
+## \_\_types
 
-An expected argument for Props was invalid or not provided.
+### propsParamError
+
+An expected argument for props was invalid or not provided.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-## PropsDefError
+### propsDefError
 
 A definition prop was sent, but it was invalid.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-## PropsBadReqError
+### propsBadReqError
 
 A required property def was sent, but was invalid.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-## PropsBadMapError
+### propsBadMapError
 
 A required property def was sent, but was invalid.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-## PropsBadTypeError
+### propsBadTypeError
 
 The specified type defined to validate property, isn't valid.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-## PropsReqError
+### propsReqError
 
 A required property was not found in subject.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-## PropsTypeError
+### propsTypeError
 
 A property didn't have the correct type.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-## Checker
+## checker
 
 Gives you tools to determine the type of a value.
 
@@ -159,9 +162,9 @@ Determines if `value` is really a string.
 
 Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
-### Props
+### props
 
-Validates properties inside an object.
+Validates properties of given object.
 
 **Parameters**
 
@@ -180,7 +183,7 @@ Validates properties inside an object.
 
 ```javascript
 const subject = { a: 1, b: 'hello' z: undefined };
-const result = Props(subject, {
+const result = props(subject, {
     a: { type:'number', required:true },
     b: 'string',
     c: { default: new Date() },
@@ -190,12 +193,12 @@ const result = Props(subject, {
 // { a: 1, b: 'hello', c: '1981-06-23 10:06:08', d: [null, true], z: undefined }
 ```
 
--   Throws **[PropsParamError](#propsparamerror)** 
--   Throws **[PropsDefError](#propsdeferror)** 
--   Throws **[PropsBadReqError](#propsbadreqerror)** 
--   Throws **[PropsBadMapError](#propsbadmaperror)** 
--   Throws **[PropsBadTypeError](#propsbadtypeerror)** 
--   Throws **[PropsReqError](#propsreqerror)** 
--   Throws **[PropsTypeError](#propstypeerror)** 
+-   Throws **propsDefError** [read](#propsdeferror)
+-   Throws **propsParamError** [read](#propsparamerror)
+-   Throws **propsBadReqError** [read](#propsbadreqerror)
+-   Throws **propsBadMapError** [read](#propsbadmaperror)
+-   Throws **propsBadTypeError** [read](#propsbadtypeerror)
+-   Throws **propsReqError** [read](#propsreqerror)
+-   Throws **propsTypeError** [read](#propstypeerror)
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The validated subject extended with default values (when applies).

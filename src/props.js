@@ -1,15 +1,6 @@
-import Thrower from '@gik/tools-thrower';
-import Err from './errors';
+import Throw from '@gik/tools-thrower';
+import Types from './types';
 import Is from './is';
-
-/**
- * Error shorthand.
- * @private
- */
-function thrower({ message, name }, suffix = '') {
-    // const sufix = value !== undefined ? `, got '${JSON.stringify(value)}'.` : '';
-    throw Thrower(message + suffix, name);
-}
 
 /**
  * Validates properties of given object.
@@ -18,9 +9,8 @@ function thrower({ message, name }, suffix = '') {
  * @param {Object} subject - The object value whose properties will be inspected.
  * @param {Object} defmap - An definition object map, describing each of the prop' types.
  * @param {Object|string} defmap.prop
- *        The name of a corresponding subject's <br>
- *        *If a string is used, it will be converted to:*<br>
- *        `{ type: <string used>, required:true }`
+ *        The name of a corresponding subject's property.
+ *        If a string is used, it will be converted to: `{ type: <string used>, required:true }`
  * @param {string} [defmap.type=any]
  *        Determines the type the prop should have, all methods on `is()` are asupported.
  * @param {bool} [defmap.required=false]
@@ -33,13 +23,11 @@ function thrower({ message, name }, suffix = '') {
  *
  * @returns {Object} The validated subject extended with default values (when applies).
  *
- * @throws {propsDefError} - [read](#propsdeferror)
- * @throws {propsParamError} - [read](#propsparamerror)
- * @throws {propsBadReqError} - [read](#propsbadreqerror)
- * @throws {propsBadMapError} - [read](#propsbadmaperror)
- * @throws {propsBadTypeError} - [read](#propsbadtypeerror)
- * @throws {propsReqError} - [read](#propsreqerror)
- * @throws {propsTypeError} - [read](#propstypeerror)
+ * @throws {CheckerPropParamError} when invalid parameters are passed.
+ * @throws {CheckerPropDefError} when a type definition is invalid.
+ * @throws {CheckerPropDefTypeError} when a type defintiion is not supported.
+ * @throws {CheckerPropReqError} when a required property is not found.
+ * @throws {CheckerPropTypeError} when a property does not match the defintion.
  *
  * @example
  * const subject = { a: 1, b: 'hello' z: undefined };
@@ -55,8 +43,11 @@ function thrower({ message, name }, suffix = '') {
 export default function props(subject, defmap) {
 
     // Validate parameters
-    if (!Is.object(subject) || Is.objectEmpty(subject)) thrower(Err.subject, subject);
-    if (!Is.object(defmap) || Is.objectEmpty(defmap)) thrower(Err.defmap, defmap);
+    [['subject', subject], ['defmap', defmap]].forEach(([key, val]) => {
+        const err = Types.CheckerPropParamError;
+        if (!Is.object(val) || Is.objectEmpty(val))
+            Throw([err.message, key, 'Object', typeof val], err.name);
+    });
 
     return Object
         .keys(defmap)
@@ -65,21 +56,27 @@ export default function props(subject, defmap) {
         /* eslint-disable no-param-reassign */
 
             // Only allow either a non-empty object or a string for def
-            if (!Is.string(def) && (!Is.object(def) || Is.objectEmpty(def)))
-                thrower(Err.nodef, `'${name}', got '${typeof def}'`);
+            if (!Is.string(def) && (!Is.object(def) || Is.objectEmpty(def))) {
+                const e = Types.CheckerPropDefError;
+                Throw([e.message, name, 'string|Object', typeof def], e.name);
+            }
 
             // if a string is provided as def, set it as type and mark prop as required.
             if (Is.string(def)) def = { type: def, required: true };
 
             // make sure all the def props have the correct type.
-            if (def.required !== undefined && !Is.boolean(def.required))
-                thrower(Err.noreq, `'${name}', got '${typeof def.required}'`);
-            if (def.map !== undefined && !Is.function(def.map))
-                thrower(Err.nomap, `'${name}', got '${typeof def.map}'`);
-            if (
-                def.type !== undefined &&
-                (!Is.string(def.type) || !Is.function(Is[def.type]))
-            ) thrower(Err.notype, `'${name}', got '${JSON.stringify(def.type)}'`);
+            if (def.required !== undefined && !Is.boolean(def.required)) {
+                const e = Types.CheckerPropDefError;
+                Throw([e.message, `${name}.required`, 'boolean', typeof def], e.name);
+            }
+            if (def.map !== undefined && !Is.function(def.map)) {
+                const e = Types.CheckerPropDefError;
+                Throw([e.message, `${name}.map`, 'function', typeof def], e.name);
+            }
+            if (def.type !== undefined && !Is.function(Is[String(def.type)])) {
+                const e = Types.CheckerPropDefTypeError;
+                Throw([e.message, name, String(def.type)], e.name);
+            }
 
             // has a def.default and no value.
             if (def.default !== undefined && value === undefined) value = def.default;
@@ -88,12 +85,15 @@ export default function props(subject, defmap) {
             if (def.map) value = def.map(value);
 
             // a prop is def.required but the value doesn't exist.
-            if (def.required && value === undefined) thrower(Err.req, `'${name}'`);
+            if (def.required && value === undefined) {
+                const e = Types.CheckerPropReqError;
+                Throw([e.message, name], e.name);
+            }
 
             // a prop is def.typed but the value doesn't match.
             if (def.type && !Is[def.type](value)) {
-                const suffix = `'${def.type}' on prop: '${name}', got '${typeof value}'`;
-                thrower(Err.type, suffix);
+                const e = Types.CheckerPropTypeError;
+                Throw([e.message, name, `{${def.type}}`, typeof value], e.name);
             }
 
             return { [name]: value };

@@ -1,8 +1,8 @@
-# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.7*
+# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.8*
 > A simple type validator for those who resist to TypeScript or FlowType
 
 ## Contributors
-* [Héctor Menéndez](mailto:hector@gik.mx) [hectormenendez.com](hectormenendez.com)
+* [Héctor Menéndez](mailto:hector@gik.mx) [http://hectormenendez.com](http://hectormenendez.com)
 
 # Usage
 
@@ -10,14 +10,6 @@
 
 ### Table of Contents
 
--   [\_\_types](#__types)
-    -   [propsParamError](#propsparamerror)
-    -   [propsDefError](#propsdeferror)
-    -   [propsBadReqError](#propsbadreqerror)
-    -   [propsBadMapError](#propsbadmaperror)
-    -   [propsBadTypeError](#propsbadtypeerror)
-    -   [propsReqError](#propsreqerror)
-    -   [propsTypeError](#propstypeerror)
 -   [checker](#checker)
     -   [is](#is)
         -   [objectEmpty](#objectempty)
@@ -29,50 +21,12 @@
         -   [boolean](#boolean)
         -   [object](#object)
     -   [props](#props)
-
-## \_\_types
-
-### propsParamError
-
-An expected argument for props was invalid or not provided.
-
-Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-
-### propsDefError
-
-A definition prop was sent, but it was invalid.
-
-Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-
-### propsBadReqError
-
-A required property def was sent, but was invalid.
-
-Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-
-### propsBadMapError
-
-A required property def was sent, but was invalid.
-
-Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-
-### propsBadTypeError
-
-The specified type defined to validate property, isn't valid.
-
-Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-
-### propsReqError
-
-A required property was not found in subject.
-
-Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-
-### propsTypeError
-
-A property didn't have the correct type.
-
-Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+-   [\_\_types](#__types)
+    -   [An](#an)
+    -   [CheckerPropDefError](#checkerpropdeferror)
+    -   [CheckerPropDefTypeError](#checkerpropdeftypeerror)
+    -   [CheckerPropReqError](#checkerpropreqerror)
+    -   [CheckerPropTypeError](#checkerproptypeerror)
 
 ## checker
 
@@ -170,9 +124,8 @@ Validates properties of given object.
 
 -   `subject` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The object value whose properties will be inspected.
 -   `defmap` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** An definition object map, describing each of the prop' types.
-    -   `defmap.prop` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))** The name of a corresponding subject's <br>
-               _If a string is used, it will be converted to:_<br>
-               `{ type: <string used>, required:true }`
+    -   `defmap.prop` **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))** The name of a corresponding subject's property.
+               If a string is used, it will be converted to: `{ type: <string used>, required:true }`
     -   `defmap.type` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Determines the type the prop should have, all methods on `is()` are asupported. (optional, default `any`)
     -   `defmap.required` **bool** Wether the prop can be omitted. (optional, default `false`)
     -   `defmap.default` **any** The value to use if prop is omitted (cannot be used along `required`). (optional, default `undefined`)
@@ -193,12 +146,40 @@ const result = props(subject, {
 // { a: 1, b: 'hello', c: '1981-06-23 10:06:08', d: [null, true], z: undefined }
 ```
 
--   Throws **propsDefError** [read](#propsdeferror)
--   Throws **propsParamError** [read](#propsparamerror)
--   Throws **propsBadReqError** [read](#propsbadreqerror)
--   Throws **propsBadMapError** [read](#propsbadmaperror)
--   Throws **propsBadTypeError** [read](#propsbadtypeerror)
--   Throws **propsReqError** [read](#propsreqerror)
--   Throws **propsTypeError** [read](#propstypeerror)
+-   Throws **CheckerPropParamError** when invalid parameters are passed.
+-   Throws **CheckerPropDefError** when a type definition is invalid.
+-   Throws **CheckerPropDefTypeError** when a type defintiion is not supported.
+-   Throws **CheckerPropReqError** when a required property is not found.
+-   Throws **CheckerPropTypeError** when a property does not match the defintion.
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The validated subject extended with default values (when applies).
+
+## \_\_types
+
+### An
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+### CheckerPropDefError
+
+A definition prop was sent, but it was invalid.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+### CheckerPropDefTypeError
+
+The specified type is not a supported primitive.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+### CheckerPropReqError
+
+A required property was not found in subject.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+### CheckerPropTypeError
+
+A property didn't have the correct type.
+
+Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)

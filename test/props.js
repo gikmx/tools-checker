@@ -1,64 +1,72 @@
 import Test from 'ava';
 import Is from '../lib/is';
-import Errors from '../lib/errors';
+import Types from '../lib/types';
 import Props from '../lib/props';
-
-const isError = key => err =>
-    err.name === Errors[key].name && err.message.indexOf(Errors[key].message) === 0;
 
 Test('should be a function', test => test.true(Is.function(Props)));
 
-const testError = (test, throws, fn) =>
-    test[throws ? 'throws' : 'notThrows'](fn, throws || undefined);
-testError.title = (type, throws) =>
-    `should ${!throws ? 'not ' : ''}throw if ${type} given.`;
-const subject = { a: 1 };
-const isSubjectErr = isError('subject');
-const isDefMapErr = isError('defmap');
-[
-    ['no arguments', isSubjectErr, () => Props()],
-    ['empty subject object', isSubjectErr, () => Props({})],
-    ['non-object subject', isSubjectErr, () => Props('test')],
-    ['only a valid subject', isDefMapErr, () => Props(subject)],
-    ['valid subject and empty defmap', isDefMapErr, () => Props(subject, {})],
-    ['valid subject and non-object defmap', isDefMapErr, () => Props(subject, 'test')],
+{
+    const subject = { a: 1 };
     [
-        'valid subject and non-object defmap',
-        isError('nodef'),
-        () => Props(subject, { b: false }),
-    ],
-    [
-        'valid subject and empty-object defmap',
-        isError('nodef'),
-        () => Props(subject, { b: {} }),
-    ],
-    [
-        'valid subject and defmap with invalid def.required',
-        isError('noreq'),
-        () => Props(subject, { a: { required: 'invalid' } }),
-    ],
-    [
-        'valid subject and defmap with invalid def.type',
-        isError('notype'),
-        () => Props(subject, { a: { type: 'invalid' } }),
-    ],
-    [
-        'valid subject and defmap with invalid def.map',
-        isError('nomap'),
-        () => Props(subject, { a: { map: 'invalid' } }),
-    ],
-    [
-        'subject with unmatched def.required',
-        isError('req'),
-        () => Props(subject, { c: { required: true } }),
-    ],
-    [
-        'subject with unmatched def.type',
-        isError('type'),
-        () => Props(subject, { a: { type: 'string' } }),
-    ],
-
-].forEach(([type, throws, fn]) => Test(type, testError, throws, fn));
+        ['no arguments', [], [Types.CheckerPropParamError]],
+        ['empty subject object', [{}], [Types.CheckerPropParamError, /subject/]],
+        ['non-object subject', ['test'], [Types.CheckerPropParamError, /subject/]],
+        ['only a valid subject', [subject], [Types.CheckerPropParamError, /defmap/]],
+        [
+            'valid subject and empty defmap',
+            [subject, {}],
+            [Types.CheckerPropParamError, /defmap/],
+        ],
+        [
+            'valid subject and non-object defmap',
+            [subject, 'test'],
+            [Types.CheckerPropParamError, /defmap/],
+        ],
+        [
+            'valid subject and empty-object defmap',
+            [subject, { b: {} }],
+            [Types.CheckerPropDefError, /Invalid def «b»/],
+        ],
+        [
+            'valid subject and non-valid object defmap',
+            [subject, { b: false }],
+            [Types.CheckerPropDefError, /Invalid def «b»/],
+        ],
+        [
+            'valid subject and defmap with invalid def.required',
+            [subject, { a: { required: 'invalid' } }],
+            [Types.CheckerPropDefError, /Invalid def «a.required»/],
+        ],
+        [
+            'valid subject and defmap with invalid def.map',
+            [subject, { a: { map: 'invalid' } }],
+            [Types.CheckerPropDefError, /function/],
+        ],
+        [
+            'valid subject and defmap with invalid def.type',
+            [subject, { a: { type: 'invalid' } }],
+            [Types.CheckerPropDefTypeError],
+        ],
+        [
+            'subject with unmatched def.required',
+            [subject, { c: { required: true } }],
+            [Types.CheckerPropReqError],
+        ],
+        [
+            'subject with unmatched def.type',
+            [subject, { a: { type: 'string' } }],
+            [Types.CheckerPropTypeError],
+        ],
+    ].forEach(([type, args, [error, regex]]) => {
+        const fn = (thrown) => {
+            const eq = thrown.name === error.name;
+            if (eq && !regex) return true;
+            if (eq && (regex && thrown.message.match(regex))) return true;
+            return false;
+        };
+        Test(`should throw if ${type} given.`, t => t.throws(() => Props(...args), fn));
+    });
+}
 
 Test('should resolve the example correctly', (test) => {
     const date = new Date();

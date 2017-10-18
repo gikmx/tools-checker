@@ -8,54 +8,54 @@ Test('should be a function', test => test.true(Is.function(Props)));
 {
     const subject = { a: 1 };
     [
-        ['no arguments', [], [Types.CheckerPropParamError]],
-        ['empty subject object', [{}], [Types.CheckerPropParamError, /subject/]],
-        ['non-object subject', ['test'], [Types.CheckerPropParamError, /subject/]],
-        ['only a valid subject', [subject], [Types.CheckerPropParamError, /defmap/]],
+        ['no arguments', [], [Types.PropParamError]],
+        ['empty subject object', [{}], [Types.PropParamError, /subject/]],
+        ['non-object subject', ['test'], [Types.PropParamError, /subject/]],
+        ['only a valid subject', [subject], [Types.PropParamError, /defmap/]],
         [
             'valid subject and empty defmap',
             [subject, {}],
-            [Types.CheckerPropParamError, /defmap/],
+            [Types.PropParamError, /defmap/],
         ],
         [
             'valid subject and non-object defmap',
             [subject, 'test'],
-            [Types.CheckerPropParamError, /defmap/],
+            [Types.PropParamError, /defmap/],
         ],
         [
             'valid subject and empty-object defmap',
             [subject, { b: {} }],
-            [Types.CheckerPropDefError, /Invalid def «b»/],
+            [Types.PropDefError, /Invalid def «b»/],
         ],
         [
             'valid subject and non-valid object defmap',
             [subject, { b: false }],
-            [Types.CheckerPropDefError, /Invalid def «b»/],
+            [Types.PropDefError, /Invalid def «b»/],
         ],
         [
             'valid subject and defmap with invalid def.required',
             [subject, { a: { required: 'invalid' } }],
-            [Types.CheckerPropDefError, /Invalid def «a.required»/],
+            [Types.PropDefError, /Invalid def «a.required»/],
         ],
         [
             'valid subject and defmap with invalid def.map',
             [subject, { a: { map: 'invalid' } }],
-            [Types.CheckerPropDefError, /function/],
+            [Types.PropDefError, /function/],
         ],
         [
             'valid subject and defmap with invalid def.type',
             [subject, { a: { type: 'invalid' } }],
-            [Types.CheckerPropDefTypeError],
+            [Types.PropDefTypeError],
         ],
         [
             'subject with unmatched def.required',
             [subject, { c: { required: true } }],
-            [Types.CheckerPropReqError],
+            [Types.PropReqError],
         ],
         [
             'subject with unmatched def.type',
             [subject, { a: { type: 'string' } }],
-            [Types.CheckerPropTypeError],
+            [Types.PropTypeError],
         ],
     ].forEach(([type, args, [error, regex]]) => {
         const fn = (thrown) => {

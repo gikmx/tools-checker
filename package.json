@@ -1,6 +1,6 @@
 {
     "name": "@gik/tools-checker",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "A simple type validator for those who resist to TypeScript or FlowType",
     "license": "MIT",
     "homepage": "https://github.com/gikmx/tools",

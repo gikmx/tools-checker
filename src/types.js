@@ -57,9 +57,9 @@ export const CheckerPropTypeError = {
 };
 
 export default {
-    CheckerPropParamError,
-    CheckerPropDefTypeError,
-    CheckerPropDefError,
-    CheckerPropTypeError,
-    CheckerPropReqError,
+    PropParamError: CheckerPropParamError,
+    PropDefTypeError: CheckerPropDefTypeError,
+    PropDefError: CheckerPropDefError,
+    PropTypeError: CheckerPropTypeError,
+    PropReqError: CheckerPropReqError,
 };

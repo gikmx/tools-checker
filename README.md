@@ -1,4 +1,4 @@
-# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.8*
+# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.9*
 > A simple type validator for those who resist to TypeScript or FlowType
 
 ## Contributors
@@ -21,12 +21,11 @@
         -   [boolean](#boolean)
         -   [object](#object)
     -   [props](#props)
--   [\_\_types](#__types)
-    -   [An](#an)
-    -   [CheckerPropDefError](#checkerpropdeferror)
-    -   [CheckerPropDefTypeError](#checkerpropdeftypeerror)
-    -   [CheckerPropReqError](#checkerpropreqerror)
-    -   [CheckerPropTypeError](#checkerproptypeerror)
+-   [CheckerPropParamError](#checkerpropparamerror)
+-   [CheckerPropDefError](#checkerpropdeferror)
+-   [CheckerPropDefTypeError](#checkerpropdeftypeerror)
+-   [CheckerPropReqError](#checkerpropreqerror)
+-   [CheckerPropTypeError](#checkerproptypeerror)
 
 ## checker
 
@@ -146,39 +145,39 @@ const result = props(subject, {
 // { a: 1, b: 'hello', c: '1981-06-23 10:06:08', d: [null, true], z: undefined }
 ```
 
--   Throws **CheckerPropParamError** when invalid parameters are passed.
--   Throws **CheckerPropDefError** when a type definition is invalid.
--   Throws **CheckerPropDefTypeError** when a type defintiion is not supported.
--   Throws **CheckerPropReqError** when a required property is not found.
--   Throws **CheckerPropTypeError** when a property does not match the defintion.
+-   Throws **[CheckerPropParamError](#checkerpropparamerror)** when invalid parameters are passed.
+-   Throws **[CheckerPropDefError](#checkerpropdeferror)** when a type definition is invalid.
+-   Throws **[CheckerPropDefTypeError](#checkerpropdeftypeerror)** when a type defintiion is not supported.
+-   Throws **[CheckerPropReqError](#checkerpropreqerror)** when a required property is not found.
+-   Throws **[CheckerPropTypeError](#checkerproptypeerror)** when a property does not match the defintion.
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The validated subject extended with default values (when applies).
 
-## \_\_types
+## CheckerPropParamError
 
-### An
+An expected argument for props was invalid or not provided.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-### CheckerPropDefError
+## CheckerPropDefError
 
 A definition prop was sent, but it was invalid.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-### CheckerPropDefTypeError
+## CheckerPropDefTypeError
 
 The specified type is not a supported primitive.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-### CheckerPropReqError
+## CheckerPropReqError
 
 A required property was not found in subject.
 
 Type: [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
-### CheckerPropTypeError
+## CheckerPropTypeError
 
 A property didn't have the correct type.
 

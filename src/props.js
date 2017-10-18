@@ -44,7 +44,7 @@ export default function props(subject, defmap) {
 
     // Validate parameters
     [['subject', subject], ['defmap', defmap]].forEach(([key, val]) => {
-        const err = Types.CheckerPropParamError;
+        const err = Types.PropParamError;
         if (!Is.object(val) || Is.objectEmpty(val))
             Throw([err.message, key, 'Object', typeof val], err.name);
     });
@@ -57,7 +57,7 @@ export default function props(subject, defmap) {
 
             // Only allow either a non-empty object or a string for def
             if (!Is.string(def) && (!Is.object(def) || Is.objectEmpty(def))) {
-                const e = Types.CheckerPropDefError;
+                const e = Types.PropDefError;
                 Throw([e.message, name, 'string|Object', typeof def], e.name);
             }
 
@@ -66,15 +66,15 @@ export default function props(subject, defmap) {
 
             // make sure all the def props have the correct type.
             if (def.required !== undefined && !Is.boolean(def.required)) {
-                const e = Types.CheckerPropDefError;
+                const e = Types.PropDefError;
                 Throw([e.message, `${name}.required`, 'boolean', typeof def], e.name);
             }
             if (def.map !== undefined && !Is.function(def.map)) {
-                const e = Types.CheckerPropDefError;
+                const e = Types.PropDefError;
                 Throw([e.message, `${name}.map`, 'function', typeof def], e.name);
             }
             if (def.type !== undefined && !Is.function(Is[String(def.type)])) {
-                const e = Types.CheckerPropDefTypeError;
+                const e = Types.PropDefTypeError;
                 Throw([e.message, name, String(def.type)], e.name);
             }
 
@@ -86,13 +86,13 @@ export default function props(subject, defmap) {
 
             // a prop is def.required but the value doesn't exist.
             if (def.required && value === undefined) {
-                const e = Types.CheckerPropReqError;
+                const e = Types.PropReqError;
                 Throw([e.message, name], e.name);
             }
 
             // a prop is def.typed but the value doesn't match.
             if (def.type && !Is[def.type](value)) {
-                const e = Types.CheckerPropTypeError;
+                const e = Types.PropTypeError;
                 Throw([e.message, name, `{${def.type}}`, typeof value], e.name);
             }
 

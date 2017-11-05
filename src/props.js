@@ -3,25 +3,22 @@ import Types from './types';
 import Is from './is';
 
 /**
- * Validates properties of given object.
- * @memberof Tools.checker
+ * @memberof checker
+ * @description Validates properties of given object.
  *
  * @param {Object} subject - The object value whose properties will be inspected.
  * @param {Object} defmap - An definition object map, describing each of the prop' types.
- * @param {Object|string} defmap.prop
- *        The name of a corresponding subject's property.
- *        If a string is used, it will be converted to: `{ type: <string used>, required:true }`
- * @param {string} [defmap.type=any]
- *        Determines the type the prop should have, all methods on `is()` are asupported.
- * @param {bool} [defmap.required=false]
- *        Wether the prop can be omitted.
- * @param {*} [defmap.default=undefined]
- *        The value to use if prop is omitted (cannot be used along `required`).
- * @param {function} [defmap.map=undefined]
- *        A function that will receive subject's prop value and expects you
- *        to return acomputed value for it
+ * @param {Object|string} defmap.prop - The name of a corresponding subject's property.
+ * If a string is used, it will be converted to: `{ type: <string used>, required:true }`
+ * @param {string} [defmap.type=any] - Determines the type the prop should have,
+ * all methods on `is()` are asupported.
+ * @param {bool} [defmap.required=false] - Whether the prop can be omitted.
+ * @param {*} [defmap.default=undefined] - The value to use if prop is omitted
+ * (cannot be used along `required`).
+ * @param {Function} [defmap.map=undefined] - A function that will receive subject's
+ * prop value and expects you to return acomputed value for it
  *
- * @returns {Object} The validated subject extended with default values (when applies).
+ * @returns {Object} - The validated subject extended with default values (when applies).
  *
  * @throws {CheckerPropParamError} when invalid parameters are passed.
  * @throws {CheckerPropDefError} when a type definition is invalid.
@@ -29,7 +26,7 @@ import Is from './is';
  * @throws {CheckerPropReqError} when a required property is not found.
  * @throws {CheckerPropTypeError} when a property does not match the defintion.
  *
- * @example
+ * @example @lang js
  * const subject = { a: 1, b: 'hello' z: undefined };
  * const result = props(subject, {
  *     a: { type:'number', required:true },

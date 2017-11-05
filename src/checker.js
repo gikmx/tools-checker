@@ -6,7 +6,6 @@ export { Is, Props };
 /**
  * Gives you tools to determine the type of a value.
  * @module checker
- * @memberof Tools
  */
 export default {
     is: Is,

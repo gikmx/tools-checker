@@ -1,9 +1,11 @@
-import Test from 'ava';
+/* globals test,expect */
 import Is from '../lib/is';
 import Types from '../lib/types';
 import Props from '../lib/props';
 
-Test('should be a function', test => test.true(Is.function(Props)));
+test('should be a function', () =>
+    expect(Is.function(Props)).toBe(true),
+);
 
 {
     const subject = { a: 1 };
@@ -58,17 +60,24 @@ Test('should be a function', test => test.true(Is.function(Props)));
             [Types.PropTypeError],
         ],
     ].forEach(([type, args, [error, regex]]) => {
+        expect.assertions(1);
         const fn = (thrown) => {
             const eq = thrown.name === error.name;
             if (eq && !regex) return true;
             if (eq && (regex && thrown.message.match(regex))) return true;
             return false;
         };
-        Test(`should throw if ${type} given.`, t => t.throws(() => Props(...args), fn));
+        test(`should throw if ${type} given.`, () => {
+            try {
+                Props(...args);
+            } catch (thrown) {
+                expect(fn(thrown)).toBe(true);
+            }
+        });
     });
 }
 
-Test('should resolve the example correctly', (test) => {
+test('should resolve the example correctly', () => {
     const date = new Date();
     const target = { a: 1, b: 'hello', z: undefined };
     const result = Props(target, {
@@ -80,5 +89,5 @@ Test('should resolve the example correctly', (test) => {
     const expected = {
         a: 1, b: 'hello', z: undefined, c: date, d: [null, true],
     };
-    test.deepEqual(result, expected);
+    expect(result).toEqual(expected);
 });

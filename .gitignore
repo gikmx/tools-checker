@@ -2,9 +2,8 @@ node_modules
 .git
 .tern-port
 *.log
-node_modules
 *.DS*
 lib
 package-lock.json
 yarn.lock
-/test/.nyc_output
+coverage

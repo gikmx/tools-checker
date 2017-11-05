@@ -7,23 +7,23 @@
 ##### Supported platforms
 
 #### <a name="table-of-contents"></a> Table of contents
-- **[checker](#checker)** Gives you tools to determine the type of a value.
-  - **[is](#checker.is)** Gives you tools to determine the type of a value.
+- **[checker](#checker)** Gives you tools and shortcuts to determine typings.
+  - **[is](#checker.is)** Determine if given value really belongs to a _primitive type__.
     - **[objectEmpty](#checker.is.objectEmpty)** `member` Determine if an element is an object and has no keys
     - **[string](#checker.is.string)** `member` Determines if `value` is really a string.
-    - **[number](#checker.is.number)** `member` Determines if `value` is really a string.
-    - **[array](#checker.is.array)** `member` Determines if `value` is really a string.
-    - **[function](#checker.is.function)** `member` Determines if `value` is really a string.
-    - **[regexp](#checker.is.regexp)** `member` Determines if `value` is really a string.
-    - **[boolean](#checker.is.boolean)** `member` Determines if `value` is really a string.
-    - **[object](#checker.is.object)** `member` Determines if `value` is really a string.
+    - **[number](#checker.is.number)** `member` Determines if `value` is really a number.
+    - **[array](#checker.is.array)** `member` Determines if `value` is really an array.
+    - **[function](#checker.is.function)** `member` Determines if `value` is really a function.
+    - **[regexp](#checker.is.regexp)** `member` Determines if `value` is really a regexp.
+    - **[boolean](#checker.is.boolean)** `member` Determines if `value` is really a boolean.
+    - **[object](#checker.is.object)** `member` Determines if `value` is really an object.
   - **[props](#checker.props)** `function` Validates properties of given object.
 - **[Types](#Types)** ``
 
 
 # <a name="checker"></a> checker
 
-Gives you tools to determine the type of a value.
+Gives you tools and shortcuts to determine typings.
 
 
 ###### Members
@@ -37,7 +37,7 @@ Gives you tools to determine the type of a value.
 
 ## <a name="checker.is"></a> is
 
-Gives you tools to determine the type of a value.
+Determine if given value really belongs to a _primitive type__.
 
 
 ###### Members
@@ -70,7 +70,7 @@ Determine if an element is an object and has no keys
         <td style="white-space: nowrap;">
                 <a href="#Object">Object</a>
         </td>
-        <td>an object to be checked.</td>
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
@@ -97,13 +97,13 @@ Determines if `value` is really a string.
         <td style="white-space: nowrap;">
                 <a href="#*">*</a>
         </td>
-        
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
 
 ###### Returns
- [`boolean`](#boolean)
+ [`boolean`](#boolean) <span style="font-weight:normal"> - Wheter `value` is string or not.</span>
 
 <small>**[▲ Top](#checker.is)**</small>
 
@@ -113,7 +113,7 @@ Determines if `value` is really a string.
 > static  property of [`checker.is`](#checker.is)
 
 
-Determines if `value` is really a string.
+Determines if `value` is really a number.
 
 ###### Parameters
 <table>
@@ -124,13 +124,13 @@ Determines if `value` is really a string.
         <td style="white-space: nowrap;">
                 <a href="#*">*</a>
         </td>
-        
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
 
 ###### Returns
- [`boolean`](#boolean)
+ [`boolean`](#boolean) <span style="font-weight:normal"> - Wheter `value` is number or not.</span>
 
 <small>**[▲ Top](#checker.is)**</small>
 
@@ -140,7 +140,7 @@ Determines if `value` is really a string.
 > static  property of [`checker.is`](#checker.is)
 
 
-Determines if `value` is really a string.
+Determines if `value` is really an array.
 
 ###### Parameters
 <table>
@@ -151,13 +151,13 @@ Determines if `value` is really a string.
         <td style="white-space: nowrap;">
                 <a href="#*">*</a>
         </td>
-        
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
 
 ###### Returns
- [`boolean`](#boolean)
+ [`boolean`](#boolean) <span style="font-weight:normal"> - Wheter `value` is array or not.</span>
 
 <small>**[▲ Top](#checker.is)**</small>
 
@@ -167,7 +167,7 @@ Determines if `value` is really a string.
 > static  property of [`checker.is`](#checker.is)
 
 
-Determines if `value` is really a string.
+Determines if `value` is really a function.
 
 ###### Parameters
 <table>
@@ -178,13 +178,13 @@ Determines if `value` is really a string.
         <td style="white-space: nowrap;">
                 <a href="#*">*</a>
         </td>
-        
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
 
 ###### Returns
- [`boolean`](#boolean)
+ [`boolean`](#boolean) <span style="font-weight:normal"> - Wheter `value` is function or not.</span>
 
 <small>**[▲ Top](#checker.is)**</small>
 
@@ -194,7 +194,7 @@ Determines if `value` is really a string.
 > static  property of [`checker.is`](#checker.is)
 
 
-Determines if `value` is really a string.
+Determines if `value` is really a regexp.
 
 ###### Parameters
 <table>
@@ -205,13 +205,13 @@ Determines if `value` is really a string.
         <td style="white-space: nowrap;">
                 <a href="#*">*</a>
         </td>
-        
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
 
 ###### Returns
- [`boolean`](#boolean)
+ [`boolean`](#boolean) <span style="font-weight:normal"> - Wheter `value` is regexp or not.</span>
 
 <small>**[▲ Top](#checker.is)**</small>
 
@@ -221,7 +221,7 @@ Determines if `value` is really a string.
 > static  property of [`checker.is`](#checker.is)
 
 
-Determines if `value` is really a string.
+Determines if `value` is really a boolean.
 
 ###### Parameters
 <table>
@@ -232,13 +232,13 @@ Determines if `value` is really a string.
         <td style="white-space: nowrap;">
                 <a href="#*">*</a>
         </td>
-        
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
 
 ###### Returns
- [`boolean`](#boolean)
+ [`boolean`](#boolean) <span style="font-weight:normal"> - Wheter `value` is boolean or not.</span>
 
 <small>**[▲ Top](#checker.is)**</small>
 
@@ -248,7 +248,7 @@ Determines if `value` is really a string.
 > static  property of [`checker.is`](#checker.is)
 
 
-Determines if `value` is really a string.
+Determines if `value` is really an object.
 
 ###### Parameters
 <table>
@@ -259,13 +259,13 @@ Determines if `value` is really a string.
         <td style="white-space: nowrap;">
                 <a href="#*">*</a>
         </td>
-        
+        <td>The value you need to check.</td>
     </tr>
 </table>
 
 
 ###### Returns
- [`boolean`](#boolean)
+ [`boolean`](#boolean) <span style="font-weight:normal"> - Wheter `value` is object or not.</span>
 
 <small>**[▲ Top](#checker.is)**</small>
 

@@ -9,7 +9,7 @@ export default {
      * @name objectEmpty
      * @memberof checker.is
      * @description Determine if an element is an object and has no keys
-     * @param {Object} value - an object to be checked.
+     * @param {Object} value - The value you need to check.
      * @returns {boolean} - Whether the object is empty or not.
      */
     objectEmpty(value) {

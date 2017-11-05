@@ -4,8 +4,8 @@ import Props from './props';
 export { Is, Props };
 
 /**
- * Gives you tools to determine the type of a value.
  * @module checker
+ * @description Gives you tools and shortcuts to determine typings.
  */
 export default {
     is: Is,

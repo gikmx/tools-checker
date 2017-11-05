@@ -4,9 +4,9 @@ import METHODS from './is-methods';
 export { PRIMITIVES, METHODS };
 
 /**
- * Gives you tools to determine the type of a value.
  * @module is
  * @memberof checker
+ * @description Determine if given value really belongs to a _primitive type__.
  */
 export const Is = new Proxy(METHODS, {
 

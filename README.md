@@ -1,5 +1,5 @@
-# [@gik/tools-checker](https://github.com/gikmx/tools) *0.0.9*
-> A simple type validator for those who resist to TypeScript or FlowType
+# [@gik/tools-checker](http://gik.mx) *0.0.9*
+> A minimal type-checker for JavaScript purists. Part of our [tools suite](https://github.com/gikmx/tools).
 
 ##### Contributors
 - [Héctor Menéndez](mailto:hector@gik.mx) []()
@@ -7,8 +7,8 @@
 ##### Supported platforms
 
 #### <a name="table-of-contents"></a> Table of contents
-- **[checker](#checker)** Gives you tools and shortcuts to determine typings.
-  - **[is](#checker.is)** Determine if given value really belongs to a _primitive type__.
+- **[checker](#checker)** A minimal type-checker for JavaScript purists.
+  - **[is](#checker.is)** Determine if given value really belongs to the corresponding type.
     - **[objectEmpty](#checker.is.objectEmpty)** `member` Determine if an element is an object and has no keys
     - **[string](#checker.is.string)** `member` Determines if `value` is really a string.
     - **[number](#checker.is.number)** `member` Determines if `value` is really a number.
@@ -23,7 +23,9 @@
 
 # <a name="checker"></a> checker
 
-Gives you tools and shortcuts to determine typings.
+A minimal type-checker for JavaScript purists.
+> - [Standalone version](https://github.com/gikmx/tools-checker).
+> - [Report a Bug](https://github.com/gikmx/tools-checker/issues).
 
 
 ###### Members
@@ -37,7 +39,7 @@ Gives you tools and shortcuts to determine typings.
 
 ## <a name="checker.is"></a> is
 
-Determine if given value really belongs to a _primitive type__.
+Determine if given value really belongs to the corresponding type.
 
 
 ###### Members

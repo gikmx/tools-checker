@@ -5,7 +5,9 @@ export { Is, Props };
 
 /**
  * @module checker
- * @description Gives you tools and shortcuts to determine typings.
+ * @description A minimal type-checker for JavaScript purists.
+ * > - [Standalone version](https://github.com/gikmx/tools-checker).
+ * > - [Report a Bug](https://github.com/gikmx/tools-checker/issues).
  */
 export default {
     is: Is,

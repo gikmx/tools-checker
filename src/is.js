@@ -6,7 +6,7 @@ export { PRIMITIVES, METHODS };
 /**
  * @module is
  * @memberof checker
- * @description Determine if given value really belongs to a _primitive type__.
+ * @description Determine if given value really belongs to the corresponding type.
  */
 export const Is = new Proxy(METHODS, {
 

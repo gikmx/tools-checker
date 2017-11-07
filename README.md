@@ -1,4 +1,4 @@
-# [@gik/tools-checker](http://gik.mx) *0.0.9*
+# [@gik/tools-checker](http://gik.mx) *0.0.11*
 > A minimal type-checker for JavaScript purists. Part of our [tools suite](https://github.com/gikmx/tools).
 
 ##### Contributors
